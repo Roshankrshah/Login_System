@@ -14,12 +14,18 @@ app.use(bodyparser.urlencoded({extended:false}));
 app.set('view engine','ejs');
 
 app.use('/static',express.static(path.join(__dirname,'public')));
-app.use('/assets',express.static(path.join(__dirname,'publi/assets')));
+app.use('/assets',express.static(path.join(__dirname,'public/assets')));
+
+app.use(session({
+    secret: uuidv4(), //  '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/route',router);
 
 app.get('/',(req,res)=>{
-    res.render('base',{title: "Chodukhana"});
+    res.render('base',{title: "Login"});
 });
 
 app.listen(PORT,()=>{

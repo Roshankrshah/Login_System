@@ -2,12 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 const  credential = {
-    email : "admin@gmail.com",
+    email : "admin@backend.com",
     password : "admin123"
 };
 
 router.post('/login',(req,res)=>{
-    res.send("");
+    if(req.body.email == credential.email && req.body.password == credential.password){
+        req.session.user = req.body.email;
+        res.redirect('/route/dashboard');
+    }else{
+        res.end("Invalid username");
+    }
 });
 
 router.get('/dashboard',(req,res)=>{
