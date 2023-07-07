@@ -16,7 +16,11 @@ router.post('/login',(req,res)=>{
 });
 
 router.get('/dashboard',(req,res)=>{
-    res.send("");
+    if(req.session.user){
+        res.render('dashboard',{user:req.session.user});
+    }else{
+        res.send("Unauthorized user");
+    }
 });
 
 router.get('/logout',(req,res)=>{
