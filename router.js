@@ -24,7 +24,14 @@ router.get('/dashboard',(req,res)=>{
 });
 
 router.get('/logout',(req,res)=>{
-    res.send("");
+    req.session.destroy((err)=>{
+        if(err){
+            console.log(err);
+            res.send("Error");
+        }else{
+            res.render('base',{title:"Logout",logout:"You logout Successful"});
+        }
+    })
 });
 
 module.exports = router;
