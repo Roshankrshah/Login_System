@@ -19,7 +19,7 @@ app.use('/assets',express.static(path.join(__dirname,'publi/assets')));
 app.use('/route',router);
 
 app.get('/',(req,res)=>{
-    res.send("Hello from space");
+    res.render('base',{title: "Chodukhana"});
 });
 
 app.listen(PORT,()=>{
